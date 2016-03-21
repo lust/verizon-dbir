@@ -1,0 +1,420 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key attr.name="Label" attr.type="string" for="edge" id="d8" />
+  <key attr.name="weight" attr.type="double" for="edge" id="d7" />
+  <key attr.name="direction" attr.type="string" for="edge" id="d6" />
+  <key attr.name="count" attr.type="int" for="edge" id="d5" />
+  <key attr.name="Label" attr.type="string" for="node" id="d4" />
+  <key attr.name="weight" attr.type="double" for="node" id="d3" />
+  <key attr.name="sub_type" attr.type="string" for="node" id="d2" />
+  <key attr.name="type" attr.type="string" for="node" id="d1" />
+  <key attr.name="count" attr.type="int" for="node" id="d0" />
+  <graph edgedefault="directed">
+    <node id="end">
+      <data key="d0">0</data>
+      <data key="d1">end</data>
+      <data key="d2">end</data>
+      <data key="d3">1.0</data>
+      <data key="d4">end</data>
+    </node>
+    <node id="action.hacking">
+      <data key="d0">11423</data>
+      <data key="d1">action</data>
+      <data key="d2">action.hacking</data>
+      <data key="d3">0.779124852563</data>
+      <data key="d4">action.hacking</data>
+    </node>
+    <node id="action.physical">
+      <data key="d0">643</data>
+      <data key="d1">action</data>
+      <data key="d2">action.physical</data>
+      <data key="d3">0.987566950906</data>
+      <data key="d4">action.physical</data>
+    </node>
+    <node id="action.malware">
+      <data key="d0">38640</data>
+      <data key="d1">action</data>
+      <data key="d2">action.malware</data>
+      <data key="d3">0.252856894251</data>
+      <data key="d4">action.malware</data>
+    </node>
+    <node id="attribute.integrity">
+      <data key="d0">51716</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.integrity</data>
+      <data key="d3">1.93360017016e-05</data>
+      <data key="d4">attribute.integrity</data>
+    </node>
+    <node id="start">
+      <data key="d0">0</data>
+      <data key="d1">start</data>
+      <data key="d2">start</data>
+      <data key="d3">1.0</data>
+      <data key="d4">start</data>
+    </node>
+    <node id="attribute.availability">
+      <data key="d0">12949</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.availability</data>
+      <data key="d3">0.749618113966</data>
+      <data key="d4">attribute.availability</data>
+    </node>
+    <node id="action.social">
+      <data key="d0">9808</data>
+      <data key="d1">action</data>
+      <data key="d2">action.social</data>
+      <data key="d3">0.810352495311</data>
+      <data key="d4">action.social</data>
+    </node>
+    <node id="attribute.confidentiality">
+      <data key="d0">2758</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.confidentiality</data>
+      <data key="d3">0.946671307307</data>
+      <data key="d4">attribute.confidentiality</data>
+    </node>
+    <node id="action.misuse">
+      <data key="d0">599</data>
+      <data key="d1">action</data>
+      <data key="d2">action.misuse</data>
+      <data key="d3">0.988417734981</data>
+      <data key="d4">action.misuse</data>
+    </node>
+    <edge source="action.hacking" target="action.misuse">
+      <data key="d5">5</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.999954021403</data>
+      <data key="d8">action.hacking-&gt;action.misuse</data>
+    </edge>
+    <edge source="action.hacking" target="action.malware">
+      <data key="d5">3723</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.957216915526</data>
+      <data key="d8">action.hacking-&gt;action.malware</data>
+    </edge>
+    <edge source="action.hacking" target="attribute.integrity">
+      <data key="d5">804</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.99076979666</data>
+      <data key="d8">action.hacking-&gt;attribute.integrity</data>
+    </edge>
+    <edge source="action.hacking" target="action.hacking">
+      <data key="d5">62</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.999298826396</data>
+      <data key="d8">action.hacking-&gt;action.hacking</data>
+    </edge>
+    <edge source="action.hacking" target="action.social">
+      <data key="d5">921</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.989424922698</data>
+      <data key="d8">action.hacking-&gt;action.social</data>
+    </edge>
+    <edge source="action.hacking" target="attribute.confidentiality">
+      <data key="d5">713</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.991815809741</data>
+      <data key="d8">action.hacking-&gt;attribute.confidentiality</data>
+    </edge>
+    <edge source="action.hacking" target="attribute.availability">
+      <data key="d5">12525</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.856041012908</data>
+      <data key="d8">action.hacking-&gt;attribute.availability</data>
+    </edge>
+    <edge source="action.physical" target="action.misuse">
+      <data key="d5">557</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.993608975022</data>
+      <data key="d8">action.physical-&gt;action.misuse</data>
+    </edge>
+    <edge source="action.physical" target="action.physical">
+      <data key="d5">142</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.998379254457</data>
+      <data key="d8">action.physical-&gt;action.physical</data>
+    </edge>
+    <edge source="action.physical" target="attribute.integrity">
+      <data key="d5">136</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.998448222352</data>
+      <data key="d8">action.physical-&gt;attribute.integrity</data>
+    </edge>
+    <edge source="action.physical" target="attribute.confidentiality">
+      <data key="d5">376</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.995689506535</data>
+      <data key="d8">action.physical-&gt;attribute.confidentiality</data>
+    </edge>
+    <edge source="action.physical" target="action.social">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.physical-&gt;action.social</data>
+    </edge>
+    <edge source="action.physical" target="attribute.availability">
+      <data key="d5">253</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.997103348391</data>
+      <data key="d8">action.physical-&gt;attribute.availability</data>
+    </edge>
+    <edge source="action.malware" target="action.hacking">
+      <data key="d5">71</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.999195374553</data>
+      <data key="d8">action.malware-&gt;action.hacking</data>
+    </edge>
+    <edge source="action.malware" target="action.malware">
+      <data key="d5">895</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.989723783579</data>
+      <data key="d8">action.malware-&gt;action.malware</data>
+    </edge>
+    <edge source="action.malware" target="attribute.integrity">
+      <data key="d5">46203</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.468924215778</data>
+      <data key="d8">action.malware-&gt;attribute.integrity</data>
+    </edge>
+    <edge source="action.malware" target="attribute.availability">
+      <data key="d5">146</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.99833327586</data>
+      <data key="d8">action.malware-&gt;attribute.availability</data>
+    </edge>
+    <edge source="action.malware" target="action.social">
+      <data key="d5">86</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.999022954815</data>
+      <data key="d8">action.malware-&gt;action.social</data>
+    </edge>
+    <edge source="action.malware" target="attribute.confidentiality">
+      <data key="d5">2336</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.973159994023</data>
+      <data key="d8">action.malware-&gt;attribute.confidentiality</data>
+    </edge>
+    <edge source="action.malware" target="action.misuse">
+      <data key="d5">5</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.999954021403</data>
+      <data key="d8">action.malware-&gt;action.misuse</data>
+    </edge>
+    <edge source="attribute.integrity" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.integrity-&gt;end</data>
+    </edge>
+    <edge source="attribute.integrity" target="action.hacking">
+      <data key="d5">4657</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.946480913135</data>
+      <data key="d8">attribute.integrity-&gt;action.hacking</data>
+    </edge>
+    <edge source="attribute.integrity" target="action.physical">
+      <data key="d5">132</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.998494200949</data>
+      <data key="d8">attribute.integrity-&gt;action.physical</data>
+    </edge>
+    <edge source="attribute.integrity" target="action.malware">
+      <data key="d5">86997</data>
+      <data key="d6">backward</data>
+      <data key="d7">1.14946492408e-05</data>
+      <data key="d8">attribute.integrity-&gt;action.malware</data>
+    </edge>
+    <edge source="attribute.integrity" target="action.misuse">
+      <data key="d5">215</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.997540145062</data>
+      <data key="d8">attribute.integrity-&gt;action.misuse</data>
+    </edge>
+    <edge source="attribute.integrity" target="action.social">
+      <data key="d5">17826</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.795107877283</data>
+      <data key="d8">attribute.integrity-&gt;action.social</data>
+    </edge>
+    <edge source="start" target="action.social">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.social</data>
+    </edge>
+    <edge source="start" target="action.misuse">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.misuse</data>
+    </edge>
+    <edge source="start" target="action.malware">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.malware</data>
+    </edge>
+    <edge source="start" target="action.physical">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.physical</data>
+    </edge>
+    <edge source="start" target="action.hacking">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.hacking</data>
+    </edge>
+    <edge source="attribute.availability" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.availability-&gt;end</data>
+    </edge>
+    <edge source="attribute.availability" target="action.hacking">
+      <data key="d5">5762</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.933779325724</data>
+      <data key="d8">attribute.availability-&gt;action.hacking</data>
+    </edge>
+    <edge source="attribute.availability" target="action.physical">
+      <data key="d5">271</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.996896444705</data>
+      <data key="d8">attribute.availability-&gt;action.physical</data>
+    </edge>
+    <edge source="attribute.availability" target="action.malware">
+      <data key="d5">282</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.996770003563</data>
+      <data key="d8">attribute.availability-&gt;action.malware</data>
+    </edge>
+    <edge source="attribute.availability" target="action.misuse">
+      <data key="d5">107</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.99878156718</data>
+      <data key="d8">attribute.availability-&gt;action.misuse</data>
+    </edge>
+    <edge source="attribute.availability" target="action.social">
+      <data key="d5">34</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.999620676575</data>
+      <data key="d8">attribute.availability-&gt;action.social</data>
+    </edge>
+    <edge source="action.social" target="action.hacking">
+      <data key="d5">2</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.999988505351</data>
+      <data key="d8">action.social-&gt;action.hacking</data>
+    </edge>
+    <edge source="action.social" target="action.malware">
+      <data key="d5">7</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.999931032105</data>
+      <data key="d8">action.social-&gt;action.malware</data>
+    </edge>
+    <edge source="action.social" target="attribute.integrity">
+      <data key="d5">10810</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.875754336356</data>
+      <data key="d8">action.social-&gt;attribute.integrity</data>
+    </edge>
+    <edge source="action.social" target="action.misuse">
+      <data key="d5">37</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.999586192627</data>
+      <data key="d8">action.social-&gt;action.misuse</data>
+    </edge>
+    <edge source="action.social" target="action.social">
+      <data key="d5">27</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.99970113912</data>
+      <data key="d8">action.social-&gt;action.social</data>
+    </edge>
+    <edge source="action.social" target="attribute.confidentiality">
+      <data key="d5">965</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.988919158132</data>
+      <data key="d8">action.social-&gt;attribute.confidentiality</data>
+    </edge>
+    <edge source="action.social" target="attribute.availability">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.social-&gt;attribute.availability</data>
+    </edge>
+    <edge source="attribute.confidentiality" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.confidentiality-&gt;end</data>
+    </edge>
+    <edge source="attribute.confidentiality" target="action.hacking">
+      <data key="d5">4083</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.953078841799</data>
+      <data key="d8">attribute.confidentiality-&gt;action.hacking</data>
+    </edge>
+    <edge source="attribute.confidentiality" target="action.physical">
+      <data key="d5">525</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.993976803798</data>
+      <data key="d8">attribute.confidentiality-&gt;action.physical</data>
+    </edge>
+    <edge source="attribute.confidentiality" target="action.malware">
+      <data key="d5">21364</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.754439808269</data>
+      <data key="d8">attribute.confidentiality-&gt;action.malware</data>
+    </edge>
+    <edge source="attribute.confidentiality" target="action.misuse">
+      <data key="d5">4882</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.943894617056</data>
+      <data key="d8">attribute.confidentiality-&gt;action.misuse</data>
+    </edge>
+    <edge source="attribute.confidentiality" target="action.social">
+      <data key="d5">4895</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.943745186616</data>
+      <data key="d8">attribute.confidentiality-&gt;action.social</data>
+    </edge>
+    <edge source="action.misuse" target="action.misuse">
+      <data key="d5">209</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.997609112958</data>
+      <data key="d8">action.misuse-&gt;action.misuse</data>
+    </edge>
+    <edge source="action.misuse" target="action.physical">
+      <data key="d5">6</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.999942526754</data>
+      <data key="d8">action.misuse-&gt;action.physical</data>
+    </edge>
+    <edge source="action.misuse" target="action.malware">
+      <data key="d5">18</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.999804590963</data>
+      <data key="d8">action.misuse-&gt;action.malware</data>
+    </edge>
+    <edge source="action.misuse" target="attribute.integrity">
+      <data key="d5">96</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.998908008322</data>
+      <data key="d8">action.misuse-&gt;attribute.integrity</data>
+    </edge>
+    <edge source="action.misuse" target="attribute.availability">
+      <data key="d5">10</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.999896548157</data>
+      <data key="d8">action.misuse-&gt;attribute.availability</data>
+    </edge>
+    <edge source="action.misuse" target="attribute.confidentiality">
+      <data key="d5">746</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.991436486316</data>
+      <data key="d8">action.misuse-&gt;attribute.confidentiality</data>
+    </edge>
+  </graph>
+</graphml>

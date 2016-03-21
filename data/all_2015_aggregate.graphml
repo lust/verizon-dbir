@@ -1,0 +1,226 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key attr.name="count" attr.type="int" for="edge" id="d2" />
+  <key attr.name="type" attr.type="string" for="node" id="d1" />
+  <key attr.name="count" attr.type="int" for="node" id="d0" />
+  <graph edgedefault="directed">
+    <node id="end">
+      <data key="d0">0</data>
+      <data key="d1">end</data>
+    </node>
+    <node id="action.environmental">
+      <data key="d0">2</data>
+      <data key="d1">action</data>
+    </node>
+    <node id="action.misuse">
+      <data key="d0">326</data>
+      <data key="d1">action</data>
+    </node>
+    <node id="action.physical">
+      <data key="d0">251</data>
+      <data key="d1">action</data>
+    </node>
+    <node id="action.malware">
+      <data key="d0">8686</data>
+      <data key="d1">action</data>
+    </node>
+    <node id="attribute.integrity">
+      <data key="d0">8823</data>
+      <data key="d1">attribute</data>
+    </node>
+    <node id="start">
+      <data key="d0">0</data>
+      <data key="d1">start</data>
+    </node>
+    <node id="action.hacking">
+      <data key="d0">5775</data>
+      <data key="d1">action</data>
+    </node>
+    <node id="action.social">
+      <data key="d0">1487</data>
+      <data key="d1">action</data>
+    </node>
+    <node id="attribute.confidentiality">
+      <data key="d0">2196</data>
+      <data key="d1">attribute</data>
+    </node>
+    <node id="attribute.availability">
+      <data key="d0">2717</data>
+      <data key="d1">attribute</data>
+    </node>
+    <edge source="action.environmental" target="attribute.availability">
+      <data key="d2">1</data>
+    </edge>
+    <edge source="action.misuse" target="action.hacking">
+      <data key="d2">2</data>
+    </edge>
+    <edge source="action.misuse" target="action.physical">
+      <data key="d2">1</data>
+    </edge>
+    <edge source="action.misuse" target="action.malware">
+      <data key="d2">1</data>
+    </edge>
+    <edge source="action.misuse" target="attribute.integrity">
+      <data key="d2">57</data>
+    </edge>
+    <edge source="action.misuse" target="action.misuse">
+      <data key="d2">39</data>
+    </edge>
+    <edge source="action.misuse" target="action.social">
+      <data key="d2">1</data>
+    </edge>
+    <edge source="action.misuse" target="attribute.confidentiality">
+      <data key="d2">294</data>
+    </edge>
+    <edge source="action.misuse" target="attribute.availability">
+      <data key="d2">12</data>
+    </edge>
+    <edge source="action.physical" target="attribute.integrity">
+      <data key="d2">47</data>
+    </edge>
+    <edge source="action.physical" target="attribute.confidentiality">
+      <data key="d2">155</data>
+    </edge>
+    <edge source="action.physical" target="action.physical">
+      <data key="d2">43</data>
+    </edge>
+    <edge source="action.physical" target="attribute.availability">
+      <data key="d2">109</data>
+    </edge>
+    <edge source="action.malware" target="action.misuse">
+      <data key="d2">9</data>
+    </edge>
+    <edge source="action.malware" target="action.malware">
+      <data key="d2">4843</data>
+    </edge>
+    <edge source="action.malware" target="attribute.integrity">
+      <data key="d2">6432</data>
+    </edge>
+    <edge source="action.malware" target="action.hacking">
+      <data key="d2">3810</data>
+    </edge>
+    <edge source="action.malware" target="action.social">
+      <data key="d2">708</data>
+    </edge>
+    <edge source="action.malware" target="attribute.confidentiality">
+      <data key="d2">699</data>
+    </edge>
+    <edge source="action.malware" target="attribute.availability">
+      <data key="d2">125</data>
+    </edge>
+    <edge source="attribute.integrity" target="end">
+      <data key="d2">12</data>
+    </edge>
+    <edge source="attribute.integrity" target="action.hacking">
+      <data key="d2">9976</data>
+    </edge>
+    <edge source="attribute.integrity" target="action.physical">
+      <data key="d2">52</data>
+    </edge>
+    <edge source="attribute.integrity" target="action.malware">
+      <data key="d2">15815</data>
+    </edge>
+    <edge source="attribute.integrity" target="action.misuse">
+      <data key="d2">70</data>
+    </edge>
+    <edge source="attribute.integrity" target="action.social">
+      <data key="d2">5601</data>
+    </edge>
+    <edge source="start" target="action.physical">
+      <data key="d2">9</data>
+    </edge>
+    <edge source="start" target="action.hacking">
+      <data key="d2">25</data>
+    </edge>
+    <edge source="start" target="action.environmental">
+      <data key="d2">1</data>
+    </edge>
+    <edge source="start" target="action.malware">
+      <data key="d2">37</data>
+    </edge>
+    <edge source="start" target="action.misuse">
+      <data key="d2">10</data>
+    </edge>
+    <edge source="start" target="action.social">
+      <data key="d2">12</data>
+    </edge>
+    <edge source="action.hacking" target="action.hacking">
+      <data key="d2">66</data>
+    </edge>
+    <edge source="action.hacking" target="action.malware">
+      <data key="d2">60</data>
+    </edge>
+    <edge source="action.hacking" target="attribute.integrity">
+      <data key="d2">3036</data>
+    </edge>
+    <edge source="action.hacking" target="action.misuse">
+      <data key="d2">2</data>
+    </edge>
+    <edge source="action.hacking" target="action.social">
+      <data key="d2">13</data>
+    </edge>
+    <edge source="action.hacking" target="attribute.confidentiality">
+      <data key="d2">1084</data>
+    </edge>
+    <edge source="action.hacking" target="attribute.availability">
+      <data key="d2">2450</data>
+    </edge>
+    <edge source="action.social" target="action.misuse">
+      <data key="d2">15</data>
+    </edge>
+    <edge source="action.social" target="action.malware">
+      <data key="d2">24</data>
+    </edge>
+    <edge source="action.social" target="attribute.integrity">
+      <data key="d2">2427</data>
+    </edge>
+    <edge source="action.social" target="action.hacking">
+      <data key="d2">12</data>
+    </edge>
+    <edge source="action.social" target="action.social">
+      <data key="d2">7</data>
+    </edge>
+    <edge source="action.social" target="attribute.confidentiality">
+      <data key="d2">217</data>
+    </edge>
+    <edge source="action.social" target="attribute.availability">
+      <data key="d2">8</data>
+    </edge>
+    <edge source="attribute.confidentiality" target="end">
+      <data key="d2">14</data>
+    </edge>
+    <edge source="attribute.confidentiality" target="action.misuse">
+      <data key="d2">332</data>
+    </edge>
+    <edge source="attribute.confidentiality" target="action.physical">
+      <data key="d2">208</data>
+    </edge>
+    <edge source="attribute.confidentiality" target="action.malware">
+      <data key="d2">3321</data>
+    </edge>
+    <edge source="attribute.confidentiality" target="action.hacking">
+      <data key="d2">3274</data>
+    </edge>
+    <edge source="attribute.confidentiality" target="action.social">
+      <data key="d2">1028</data>
+    </edge>
+    <edge source="attribute.availability" target="end">
+      <data key="d2">5</data>
+    </edge>
+    <edge source="attribute.availability" target="action.hacking">
+      <data key="d2">156</data>
+    </edge>
+    <edge source="attribute.availability" target="action.physical">
+      <data key="d2">118</data>
+    </edge>
+    <edge source="attribute.availability" target="action.malware">
+      <data key="d2">296</data>
+    </edge>
+    <edge source="attribute.availability" target="action.misuse">
+      <data key="d2">36</data>
+    </edge>
+    <edge source="attribute.availability" target="action.social">
+      <data key="d2">219</data>
+    </edge>
+  </graph>
+</graphml>
