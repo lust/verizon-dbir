@@ -46,7 +46,8 @@ function processData(data) {
 
         let nodeObj = {
             "name": node["@id"],
-            "data": data
+            "data": data,
+            "active": false
         }
         if (nodeObj.name == "start") {
             startNode = nodeObj;
@@ -155,7 +156,8 @@ function addTooltip(circle) {
                 return split[0] + " tooltip";
             }
             return "tooltip";
-        });
+        })
+        .style('opacity', 0).transition().style('opacity',1);
 
     var offset = tooltip.node().getBBox().width / 2;
 
@@ -197,13 +199,13 @@ function arcDiagram(graph) {
         .attr('class', 'label')
         .style('text-anchor', 'middle')
         .attr('transform', 'translate(' + width / 2 + ',' + wp + ')');
-    
+
     svg.append("text")
         .text("INCIDENT COUNT")
         .attr('class', 'label')
         .style('text-anchor', 'end')
         .attr('dy', '.35em')
-        .attr('transform', 'translate(' + offset + ',' + height/2 + ')');
+        .attr('transform', 'translate(' + offset + ',' + height / 2 + ')');
 
     //    var header = svg.append("text")
     //        .attr('class','heading')
@@ -216,7 +218,11 @@ function arcDiagram(graph) {
     //        .text("ATTACK GRAPH")
     //        .attr("x", 0)
     //        .attr("y", 50);
-    // must be done AFTER links are fixed
+    
+    update(graph);
+}
+
+function update(graph) {
     linearLayout(graph.nodes);
 
     // draw links first, so nodes appear on top
@@ -224,6 +230,7 @@ function arcDiagram(graph) {
 
     // draw nodes last
     drawNodes(graph.nodes);
+
 }
 
 // Layout nodes linearly, sorted by group
@@ -264,28 +271,19 @@ function drawNodes(nodes) {
     let nodeColorScale = d3.scale.quantize().domain([min, max]).range(colorArray);
 
 
-    var nodeEnter = d3.select("#plot").selectAll(".node")
-        .data(nodes)
-        .enter();
+    var node = d3.select("#plot").selectAll(".node")
+        .data(nodes);
+
+    let nodeEnter = node.enter();
 
     var nodeGroup = nodeEnter.append("g");
 
-    nodeGroup.append("circle")
+    let outline = nodeGroup.append("circle")
         .attr("class", "nodeOutline")
-        .attr("cx", function (d, i) {
-            return d.x;
-        })
-        .attr("cy", function (d, i) {
-            return d.y;
-        })
-        .attr("r", function (d, i) {
-            if (d.name == "start" || d.name == "end")
-                return 0;
-            return radius+2;
-        })
         .attr('fill', 'white')
         .attr('stroke', 'black')
         .attr('stroke-width', '1px')
+        .attr('r', 0)
         .attr('stroke-dasharray', function (d) {
             if (d.data.type == "attribute") {
                 return "4, 4";
@@ -293,31 +291,24 @@ function drawNodes(nodes) {
         })
         .attr('opacity', 0.4);
 
-    nodeGroup.append("circle")
-        .attr("class", "node")
-        .attr("id", function (d, i) {
-            return d.name;
-        })
-        .attr("cx", function (d, i) {
+    node.select('.nodeOutline').attr("cx", function (d, i) {
             return d.x;
         })
         .attr("cy", function (d, i) {
             return d.y;
-        })
+        }).transition()
         .attr("r", function (d, i) {
             if (d.name == "start" || d.name == "end")
-                return radius / 2;
-            return nodeScale(d.data.count);
+                return 0;
+            return radius + 2;
+        });
+
+    let circle = nodeGroup.append("circle")
+        .attr("class", "node")
+        .attr("id", function (d, i) {
+            return d.name;
         })
-        .style("fill", function (d, i) {
-            if (d.name == "start" || d.name == "end") {
-                return "#d1d3d4";
-            }
-            return nodeColorScale(d.data.count);
-        })
-        .each(function (d) {
-            addTooltip(d3.select(this));
-        })
+        .attr('r', 0)
         .on('mouseover', function (d, i) {
             let thisData = d;
 
@@ -385,7 +376,32 @@ function drawNodes(nodes) {
                 });
         });
 
-    nodeGroup.append("text")
+    node.select('.node').attr("cx", function (d, i) {
+            return d.x;
+        })
+        .attr("cy", function (d, i) {
+            return d.y;
+        })
+        .style("fill", function (d, i) {
+            if (d.name == "start" || d.name == "end") {
+                return "#d1d3d4";
+            }
+            return nodeColorScale(d.data.count);
+        })
+        .each(function (d) {
+            addTooltip(d3.select(this));
+        })
+        .transition()
+        .attr("r", function (d, i) {
+            if (d.name == "start" || d.name == "end")
+                return radius / 2;
+            if (d.active) {
+                return radius*5;
+            }
+            return nodeScale(d.data.count);
+        });
+
+    let text = nodeGroup.append("text")
         .text(function (d) {
             if (d.name == "start" || d.name == "end") {
                 return "";
@@ -395,10 +411,11 @@ function drawNodes(nodes) {
         .style('pointer-events', 'none')
         .style('text-anchor', 'middle')
         .style('opacity', 0)
-        .attr('dy', '.35em')
-        .attr('transform', function (d) {
-            return 'translate(' + d.x + ',' + d.y + ')';
-        });
+        .attr('dy', '.35em');
+
+    node.select('.nodeCount').attr('transform', function (d) {
+        return 'translate(' + d.x + ',' + d.y + ')';
+    });
 
 }
 
@@ -418,15 +435,15 @@ function drawLinks(links) {
     // scale to generate radians (just for lower-half of circle)
 
     // add links
-    d3.select("#plot").selectAll(".arch")
-        .data(links)
-        .enter()
+    let linksSelection = d3.select("#plot").selectAll(".arch")
+        .data(links);
+
+    linksSelection.enter()
         .append("path")
         .attr("class", "arch")
-        .style('opacity', function (d) {
-            //            console.log([d.data.weight, linkScale(d.data.weight)]);
-            return linkScale(d.data.count);
-        })
+        .style('opacity', 0);
+
+    linksSelection
         .attr("transform", function (d, i) {
             // arc will always be drawn around (0, 0)
             // shift so (0, 0) will be between source and target
@@ -441,7 +458,11 @@ function drawLinks(links) {
             //            } else return 'red';
             return 'steelgray';
         })
-        .attr("d", shapedEdgePointy);
+        .attr("d", shapedEdgePointy)
+        .transition().duration(500).style('opacity', function (d) {
+            //            console.log([d.data.weight, linkScale(d.data.weight)]);
+            return linkScale(d.data.count);
+        });
 
     function shapedEdge(d, i) {
         // get x distance between source and target
