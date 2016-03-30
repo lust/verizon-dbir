@@ -63,12 +63,16 @@ b {
 }
 #title {
     font-weight: 900;
-    font-size: 3em;
+    font-size: 1em;
+    text-transform: uppercase;
 }
 #description {
-    width: 500px;
+    width: 400px;
     display: block;
     color: slategray;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid slategray;
 }
 #content {
     position: absolute;
@@ -76,11 +80,61 @@ b {
     left: 20px;
     /*    pointer-events: none;*/
 }
+#colophon {
+    font-size: 0.65em;
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    text-align: right;
+    color: slategray;
+    opacity: 0.6;
+}
 #legend {
     position: absolute;
     width: 175px;
     bottom: 20px;
     left: 20px;
+}
+.childLabel {
+    fill: white;
+    font-size: 1.17em;
+    letter-spacing: .4px;
+}
+#links {
+    list-style: none;
+    padding-left: 0;
+    display: inline;
+    text-transform: uppercase;
+}
+
+#links li {
+    display: inline;
+    padding-right: 5px;
+/*    padding-left: 5px;*/
+    border-right: 1px solid darkslategray;
+}
+
+#links li:last-of-type {
+    border-right: none;
+}
+a {
+    text-decoration: none;
+    color: darkslategrey;
+/*    font-style: italic;*/
+}
+
+.active {
+    font-weight: 900;
+}
+
+a:hover {
+/*    font-style: normal;*/
+    background-color: darkslategrey;
+    color: white;
+}
+
+.node {
+    pointer-events: none;
 }
 @media only screen and (max-width: 1600px) {
     #legend {
@@ -91,11 +145,14 @@ b {
     }
     #title {
         font-weight: 900;
-        font-size: 2em;
+        font-size: 1em;
     }
     #description {
-        width: 300px;
+        width: 400px;
         display: block;
         color: slategray;
+    }
+    .childLabel {
+        font-size: .9em;
     }
 }

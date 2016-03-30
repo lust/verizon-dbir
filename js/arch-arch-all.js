@@ -5,7 +5,7 @@ var width = document.documentElement.clientWidth; // width of svg image
 var height = document.documentElement.clientHeight; // height of svg image
 var margin = 40; // amount of margin around plot area
 //var pad = margin / 2; // actual padding amount
-var radius = width < 1600 ? 20 : 40; // fixed node radius
+var radius = width < 1600 ? 2.5 : 3.5; // fixed node radius
 let childR = width < 1600 ? 200 : 350;
 var yfixed = height / 2; // y position for all nodes
 var xfixed = radius;
@@ -16,31 +16,31 @@ let processed;
 let childrenMap;
 let detailHover = false;
 
-d3.json("finaldata/2016_supergraph.json", function (error, data) {
+d3.json("finaldata/2016_all_supergraph.json", function (error, data) {
     if (error) return console.warn(error);
 
     processed = processData(data);
     arcDiagram(processed);
 });
 
-d3.json("finaldata/2016_all_supergraph.json", function (error, data) {
-    if (error) return console.warn(error);
-
-    let all = processData(data);
-
-    let nodes = all.nodes;
-    let map = {};
-    nodes.forEach((data) => {
-        let d = data.data;
-
-        if (map[d.subType]) {
-            map[d.subType].push(d);
-        } else {
-            map[d.subType] = [d];
-        }
-    })
-    childrenMap = map;
-});
+//d3.json("finaldata/2016_all_supergraph.json", function (error, data) {
+//    if (error) return console.warn(error);
+//
+//    let all = processData(data);
+//
+//    let nodes = all.nodes;
+//    let map = {};
+//    nodes.forEach((data) => {
+//        let d = data.data;
+//
+//        if (map[d.subType]) {
+//            map[d.subType].push(d);
+//        } else {
+//            map[d.subType] = [d];
+//        }
+//    })
+//    childrenMap = map;
+//});
 
 function processData(data) {
     let output = {
@@ -167,28 +167,21 @@ function addTooltip(circle) {
     var x = parseFloat(circle.attr("cx")) + radius;
     var y = parseFloat(circle.attr("cy")) - radius;
     var r = 10;
-    var text = circle.attr("id");
+    //    console.log(d3.select(circle).node().datum());
+    var text = d3.select(circle).node().datum().name;
 
     var split = text.split('.');
     if (split.length == 1)
-        text = split[0];
+        text = split[split.length - 1];
     else
-        text = split[1];
-
-    //    console.log(d3.selectAll('#' + text).size());
-    if (d3.selectAll('#' + text+'tooltip').size() > 0) return;
+        text = split[split.length - 1];
     var tooltip = d3.select("#plot")
         .append("text")
+        .style('font-size', '.5em')
         .text(text.toUpperCase())
         .attr("transform", "translate(" + x + "," + y + ")rotate(-45)")
         .attr("class", function () {
-            if (split.length == 2) {
-                return split[0] + " tooltip";
-            }
-            return "tooltip";
-        })
-        .attr('id', function () {
-            return text+'tooltip';
+            return split[0] + " tooltip";
         })
         .style('opacity', 0).transition().style('opacity', 1);
 
@@ -225,7 +218,7 @@ function arcDiagram(graph) {
         .style('opacity', 0)
         .on('mouseover', function () {
             detailHover = false;
-
+            d3.selectAll('.tooltip').transition().style('opacity',0).remove();
             d3.selectAll('.nodeCount').transition().style('opacity', 0);
             d3.selectAll('.arch').transition().style('opacity', function (d) {
                 if (!d.active) return 0;
@@ -234,9 +227,8 @@ function arcDiagram(graph) {
 
             d3.selectAll('.node')
                 .each(function (d) {
-                    if (d.active && !d.selected) {
-                        addTooltip(d3.select(this));
-                    }
+//                    if (d.active && !d.selected)
+//                        addTooltip(d3.select(this));
                 }).transition().style("fill", function (d, i) {
                     if (d.name == "start" || d.name == "end") {
                         return "#d1d3d4";
@@ -285,18 +277,18 @@ function arcDiagram(graph) {
         .attr('dy', '.35em')
         .attr('transform', 'translate(' + offset + ',' + height / 2 + ')');
 
-    svg.on('click', function () {
-        processed.nodes.forEach(d => {
-            d.selected = false;
-            d.active = true;
-        });
-        processed.edges.forEach(d => d.active = true);
-        d3.selectAll('.child').remove();
-        //        d3.select('#backRect').style('cursor', 'default');
-        showElements();
-        update(processed);
-        //        d3.selectAll('.tooltip').remove();
-    });
+    //    svg.on('click', function () {
+    //        processed.nodes.forEach(d => {
+    //            d.selected = false;
+    //            d.active = true;
+    //        });
+    //        processed.edges.forEach(d => d.active = true);
+    //        d3.selectAll('.child').remove();
+    ////        d3.select('#backRect').style('cursor', 'default');
+    //        showElements();
+    //        update(processed);
+    //        //        d3.selectAll('.tooltip').remove();
+    //    });
 
     //    var header = svg.append("text")
     //        .attr('class','heading')
@@ -358,7 +350,7 @@ function drawNodes(nodes) {
         return node.data.count;
     });
 
-    nodeScale = d3.scale.linear().domain([min, max]).range([6, radius]);
+    nodeScale = d3.scale.linear().domain([min, max]).range([1.5, radius]);
     nodeColorScale = d3.scale.quantize().domain([min, max]).range(colorArray);
 
 
@@ -367,7 +359,7 @@ function drawNodes(nodes) {
 
     let nodeEnter = node.enter();
 
-    let nodeGroup = nodeEnter.append("g");
+    var nodeGroup = nodeEnter.append("g");
 
     let outline = nodeGroup.append("circle")
         .attr("class", "nodeOutline")
@@ -381,16 +373,6 @@ function drawNodes(nodes) {
             }
         })
         .attr('opacity', 0.4)
-        .style('cursor', d => {
-            //            console.log(d)
-            if (d.name == "start" || d.name == "end") {
-                return 'default';
-            }
-            if (d.selected)
-                return 'default';
-
-            return 'pointer';
-        })
         .on('mouseover', function (d, i) {
             let thisData = d;
             if (d.selected) {
@@ -408,7 +390,6 @@ function drawNodes(nodes) {
                 return "#d1d3d4";
             });
 
-            //            console.log(nodeGroup.select('.node'));
             d3.selectAll('.node').filter(dN => dN.name == d.name).style('fill', function (d) {
                 if (d.name == "start" || d.name == "end") {
                     return "#d1d3d4";
@@ -460,27 +441,7 @@ function drawNodes(nodes) {
                         return "#d1d3d4";
                     }
                     return nodeColorScale(d.data.count);
-                })
-                .each(function (d) {
-                    if (d.active)
-                        addTooltip(d3.select(this));
                 });
-        })
-        .on('click', function (d, i) {
-            d3.event.stopPropagation();
-
-            if (d.name == "start" || d.name == "end") {
-                return;
-            }
-            processed.nodes.forEach(d => d.active = false);
-            processed.nodes[i].active = true;
-            processed.nodes[i].selected = true;
-            processed.edges.forEach(d => d.active = false);
-            nodeGroup.select('.nodeCount').transition().style('opacity', 0);
-            hideElements();
-            update(processed);
-            //            d3.select('#backRect').style('cursor', 'pointer');
-            d3.selectAll('.tooltip').remove();
         });
 
     node.select('.nodeOutline').attr("cx", function (d, i) {
@@ -492,8 +453,8 @@ function drawNodes(nodes) {
         .attr("r", function (d, i) {
             if (!d.active) return 0;
             if (d.name == "start" || d.name == "end")
-                return radius / 2;
-            return radius + 2;
+                return radius;
+            return radius + .1;
         });
 
     let circle = nodeGroup.append("circle")
@@ -517,14 +478,6 @@ function drawNodes(nodes) {
         .attr("cy", function (d, i) {
             return d.y;
         })
-        .each(function (d) {
-            addTooltip(d3.select(this));
-        })
-        .each(function (d) {
-            if (d.selected) {
-                micro(d);
-            }
-        })
         .transition('growNodes')
         .style("fill", function (d, i) {
             if (d.name == "start" || d.name == "end") {
@@ -536,7 +489,7 @@ function drawNodes(nodes) {
         .attr("r", function (d, i) {
             if (!d.active) return 0;
             if (d.name == "start" || d.name == "end")
-                return radius / 2;
+                return radius;
             if (d.selected) {
                 return childR;
                 //                return nodeScale(d.data.count) * 10;
@@ -556,7 +509,7 @@ function drawNodes(nodes) {
         .style('pointer-events', 'none')
         .style('text-anchor', 'middle')
         .style('opacity', 0)
-        .attr('dy', '.35em');
+        .attr('dy', '1.35em');
 
     node.select('.nodeCount').attr('transform', function (d) {
         return 'translate(' + d.x + ',' + d.y + ')';
@@ -794,7 +747,7 @@ function micro(datum) {
 
     let child = d3.select('#plot').append('g').attr('class', 'child');
 
-//    console.log(datum);
+    //    console.log(datum);
     // title
     let title = datum.name.split('.');
     child.append('text')
